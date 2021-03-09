@@ -48,12 +48,14 @@ Nota skal `node-fetch` á bakenda.
 Setja skal upp `redis` og nota til að cachea gögn.
 
 Setja skal verkefnið upp á Heroku með cache virkni.
+
+Þar sem setja þarf inn kreditkort til að geta notað Heroku redis, er ekki krafa um að gera það. Fyrri útgáfa af verkefnalýsingu gaf það til kynna.
 ## Mat
 
 * 20% – Bakenda virkni sett upp og virkar með gefinni framenda virkni
 * 30% – Proxy virkni á bakenda sett upp og notar redis
 * 30% – Viðbætur á framenda til að geta sótt gögn gegnum proxy
-* 20% – Verkefni sett upp á Heroku með cache virkni
+* 20% – Verkefni sett upp á Heroku (ekki krafa um redis á heroku, sjá að ofan)
 
 ## Sett fyrir
 
@@ -80,4 +82,11 @@ Sett verða fyrir tvö hópverkefni þar sem hvort um sig gildir 10%, samtals 20
 
 ---
 
-> Útgáfa 0.1
+> Útgáfa 0.2
+
+|--------|----------|
+| Útgáfa | Breyting |
+|--------|----------|
+| 0.1    | Fyrsta útgáfa |
+| 0.2    | Taka fram að ekki sé krafa um að nota heroku-redis |
+|--------|----------|
