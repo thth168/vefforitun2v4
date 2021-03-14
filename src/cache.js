@@ -13,9 +13,7 @@ let client;
 let asyncGet;
 let asyncSet;
 
-
-
-if (process.env.DEV == 'TRUE') {
+if (process.env.DEV === 'TRUE') {
   client = redis.createClient(redisOptions);
   asyncGet = util.promisify(client.get).bind(client);
   asyncSet = util.promisify(client.set).bind(client);
