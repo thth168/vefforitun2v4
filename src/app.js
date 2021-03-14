@@ -4,21 +4,27 @@ import { fileURLToPath } from 'url';
 import express from 'express';
 import dotenv from 'dotenv';
 
+import cors from 'cors';
 import { router as proxyRouter } from './proxy.js';
 
 dotenv.config();
 
 const {
-  PORT: port = 3001, // Mun verða proxyað af browser-sync í development
+  PORT: port = 3002,
 } = process.env;
 
 const app = express();
+
+// Sér um að req.body innihaldi gögn úr formi
+app.use(express.urlencoded({ extended: true }));
+
 const path = dirname(fileURLToPath(import.meta.url));
 
 app.use(express.static(join(path, '../public')));
 
-// TODO setja upp proxy þjónustu
-// TODO birta index.html skjal
+app.set('views', join(path, '../views'));
+app.set('view engine', 'ejs');
+app.use(cors());
 
 /**
  * Middleware sem sér um 404 villur.
@@ -47,6 +53,12 @@ function errorHandler(err, req, res, next) {
   const title = 'Villa kom upp';
   res.status(500).render('error', { title });
 }
+
+app.use('/proxy', proxyRouter);
+
+app.use('/', (req, res) => {
+  res.sendFile(join(path, '../index.html'));
+});
 
 app.use(notFoundHandler);
 app.use(errorHandler);
